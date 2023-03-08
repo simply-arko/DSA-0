@@ -57,14 +57,11 @@ void Queue::dequeue(){
         cout<<"Queue is Empty!"<<endl;
         return;
     }
-    if(front==0&&rear==0){
+    else if(front==rear){
         front = rear = -1;
         return;
     }
-
     front = (front+1)%capacity;
-    if(front==rear)
-        front = rear = -1;
 }
 
 int Queue::peek_rear(){
@@ -86,6 +83,9 @@ int Queue::peek_front(){
 }
 
 int Queue::count(){
+    if(isEmpty())
+        return 0;
+        
     return (rear>front)?(rear-front+1):(capacity-(front-rear-1));
 }
 
@@ -98,6 +98,8 @@ void Queue::display(){
                     cout<<ptr[i];
                 else
                     cout<<ptr[i]<<"<-";
+        else if(front==rear)
+            cout<<ptr[front];
         else{
             for(int i=front; i<=capacity-1; i++)
                 cout<<ptr[i]<<"<-";
@@ -124,17 +126,10 @@ int main(){
     q.dequeue();
     q.dequeue();
     q.dequeue();
+    q.dequeue();
+    q.dequeue();
     q.display();
-    cout<<q.count()<<endl;
-    q.enqueue(6);
-    q.enqueue(7);
-    q.enqueue(8);
-    q.display();
-    cout<<q.count()<<endl;
-    cout<<q.peek_front()<<endl;
-    cout<<q.peek_rear()<<endl;
-
-    q.display();
+    
     
     return EXIT_SUCCESS;
 }

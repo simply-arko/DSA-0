@@ -28,6 +28,8 @@ class Queue{
         int peek_front();
         int count();
         void display();
+        void sort_assending();
+        void sort_descending();
 
 };
 
@@ -113,18 +115,74 @@ void Queue::display(){
 
 }
 
+void Queue::sort_assending(){
+    if(isEmpty()){
+        cout<<"Can't sort empty list!\n";
+        return;
+    }
+    // Insertion sort
+
+    node *dummy = new node(0);
+    dummy->next = front;
+    while(front->next){
+        node *temp = dummy;
+        while(front->next->item>temp->next->item)
+            temp = temp->next;
+        if(temp==front)
+            front = front->next;
+        else{
+            node *m = front->next;
+            front->next = front->next->next;
+            m->next = temp->next;
+            temp->next = m;
+        }
+    }
+
+    front = dummy->next;
+}
+
+void Queue::sort_descending(){
+
+    if(isEmpty()){
+        cout<<"Can't sort empty list!\n";
+        return;
+    }
+    // Insertion sort
+
+    node *dummy = new node(0);
+    dummy->next = front;
+    while(front->next){
+        node *temp = dummy;
+        while(front->next->item<temp->next->item)
+            temp = temp->next;
+        if(temp==front)
+            front = front->next;
+        else{
+            node *m = front->next;
+            front->next = front->next->next;
+            m->next = temp->next;
+            temp->next = m;
+        }
+    }
+
+    front = dummy->next;
+
+}
+
 int main(){
     Queue q;
-
-    q.enqueue(1);
     q.enqueue(2);
-    q.enqueue(3);
+    q.enqueue(1);
     q.enqueue(4);
+    q.enqueue(3);
     q.enqueue(5);
+    q.display();
 
-    q.dequeue();
-    q.dequeue();
-    
+    q.sort_assending();
+
+    q.display();
+
+    q.sort_descending();
     q.display();
     cout<<q.peek_front()<<endl;
     cout<<q.peek_rear()<<endl;
