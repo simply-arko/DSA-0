@@ -4,7 +4,7 @@
 - `array` is based on array data-structure.
 - Header file: `#include <array>`.
 - The `array` class is a part of the `std namespace`.
-- Size needs to be mentioned during creation and it cannot be changed
+- Size needs to be mentioned during creation and it cannot be changed.
 ## How to create an array object?
 ```c++
 array <int, 3> a1 = {10, 20, 30};
@@ -61,8 +61,8 @@ array <int, 6> a1 = {10, 20, 30, 40, 50, 60};
 - `fill(<data>)` - specially used to initialize or fill all the indexes of the array with a similar value.
 - `back()` - returns last element.
 - `front()` - returns first element.
-- `emoty()` - returns true or false.
-- `data()` - returns the address of first element.
-- `size()` - returns number of elements.
+- `empty()` - returns true or false.
+- `data()` - returns a direct pointer to the memory array used internally by the array to store its owned elements.
+- `size()` - returns number of elements in array.
 - `sizeof()` - returns total size of array in bytes.
 - `swap()` - swap the elements of two arrays.
