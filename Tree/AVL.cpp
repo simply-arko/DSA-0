@@ -25,20 +25,37 @@ class AVL{
         void inOrder(node*);
         void postOrder(node*);
         node* deletion(node*, int);
+        node* searchNode(node*, int);
+        node* deleteTree(node*);
     
     public:
         AVL();
+        ~AVL();
         bool isEmpty();
         int getHeight(node*);
         int getBalanceFactor(node*);
         void insert(int);
         void display();
         void del(int);
+        node* search(int);
 
 };
 
 AVL::AVL(){
     root = NULL;
+}
+
+AVL::~AVL(){
+    root = deleteTree(root);
+}
+
+node* AVL::deleteTree(node *n){
+    if(n==NULL)
+        return NULL;
+    n->left = deleteTree(n->left);
+    n->right = deleteTree(n->right);
+    delete n;
+    return NULL;
 }
 
 bool AVL::isEmpty(){
@@ -193,6 +210,21 @@ void AVL::del(int item){
     root = deletion(root, item);
 }
 
+node* AVL::searchNode(node *n, int item){
+    if(n==NULL)
+        return NULL;
+    else if(item<n->item)
+        return searchNode(n->left, item);
+    else if(item>n->item)
+        return searchNode(n->right, item);
+    else
+        return n;
+}
+
+node* AVL::search(int item){
+    return searchNode(root, item);
+}
+
 void AVL::preOrder(node *n){
     if(n==NULL)
         return;
@@ -251,6 +283,10 @@ int main(){
 
     t.display();
     cout<<"\n";
+    cout<<t.search(28)->item<<"\n";
+    cout<<t.search(2)->item<<"\n";
+    cout<<t.search(10)->item<<"\n";
+    cout<<(t.search(11)==NULL)<<"\n\n";
 
     t.del(2);
     t.del(3);
