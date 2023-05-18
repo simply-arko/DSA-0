@@ -31,8 +31,11 @@ Iterator objects can be obtained from the following members of array class:
     - `cbegin()/cend()` - const_iterator (**read only**)
     - `rbegin()/rend()` - reverse_iterator (**read/write**)
     - `crbegin()/crend()` - const_reverse_iterator (**read only**)
-![iterator begin()/end()](./Pics/begin%3Aend.png)
-![iterator begin()/end()](./Pics/rbegin%3Arend.png)
+<br><br>
+<img src="./Pics/begin_end.png" width="300" height="130">
+<img src="./Pics/rbegin_rend.png" width="300" height="130">
+<br><br>
+
 ```c++
 vector <int> v{10, 20, 30, 40, 50, 60};
 
