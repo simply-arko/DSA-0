@@ -2,40 +2,44 @@
 #include<vector>
 using namespace std;
 
-void merge(vector <int> &arr, int p, int q, int r){
+void merge(vector <int> &arr, int l, int mid, int r){
 
-    int n1 = q-p+1, n2 = r-q;
-    int L[n1+1], R[n2+1];
-    for(int i=0; i<n1; i++)
-        L[i] = arr[p+i];
-    L[n1] = INT_MAX; 
-    for(int i=0; i<n2; i++)
-        R[i] = arr[q+1+i];
-    R[n2] = INT_MAX;
-    int i=0, j=0;
-    for(int k=p; k<=r; k++)
-        if(L[i]<=R[j]){
-            arr[k] = L[i];
-            i++;
-        }
-        else{
-            arr[k] = R[j];
-            j++;
-        }
+    int leftLength = mid-l+1;
+    int rightLength = r-mid;
+    int leftSubarray[leftLength], rightSubarray[rightLength];
+
+    for(int i=0; i<leftLength; i++)
+        leftSubarray[i] = arr[l+i];
+    for(int i=0; i<rightLength; i++)
+        rightSubarray[i] = arr[mid+1+i];
+    
+    int i=0;    // pointer to left sub-array
+    int j=0;    // pointer to right sub-array
+    int k=l;    // pointer to main-array
+    while(i<leftLength && j<rightLength)
+        arr[k++] = (leftSubarray[i]<rightSubarray[j])?leftSubarray[i++]:rightSubarray[j++];
+    
+    // incase i's journey is left
+    while(i<leftLength)
+        arr[k++] = leftSubarray[i++];
+    // incase j's journey is left
+    while(j<rightLength)
+        arr[k++] = rightSubarray[j++];
 
 }
 
-void merge_sort(vector <int> &arr, int p, int r){
-    if(p<r){
-        int q = (p+r)/2;
-        merge_sort(arr, p, q);
-        merge_sort(arr, q+1, r);
-        merge(arr, p, q, r);
-    }
+void merge_sort(vector <int> &arr, int l, int r){
+    if(l>=r)
+        return;
+
+    int mid = (l+r)/2;
+    merge_sort(arr, l, mid);
+    merge_sort(arr, mid+1, r);
+    merge(arr, l, mid, r);
 }
 
 int main(){
-    vector <int> arr = {8,7,6,5,4,3,2,1};
+    vector <int> arr = {10,28,24,6,34,18,38,44};
     cout<<"[";
     for(int x:arr)
         cout<<x<<", ";
@@ -43,6 +47,7 @@ int main(){
 
     merge_sort(arr, 0, arr.size()-1);
 
+    cout<<"[";
     for(int x:arr)
         cout<<x<<", ";
     cout<<"]"<<endl;

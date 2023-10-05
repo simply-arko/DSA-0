@@ -61,6 +61,8 @@ for(c_r_it=v.crbegin(); c_r_it!=v.crend(); c_r_it++)
 ```
 ## Other Important methods of vector class
 - `fill(v.begin(), v.end(), value)` - specially used to initialize or fill all the indexes of the vector with a similar value.
+- `begin()` - returns an iterator pointing to  the first element of the list.
+- `end()` - returns an iterator pointing to the theoretical last element which follows the last element.
 - `back()` - returns last element.
 - `front()` - returns first element.
 - `empty()` - returns true or false.
@@ -81,7 +83,7 @@ Insert one or more elements.
 - `v2.insert(v2.begin(), v1.begin(), v1.begin()+5)` - copy first 5 elements of v1 into v2.
 ## **`erase()`** in vector
 - `v.erase(it)` - erase an element of vector.
-- `v.erase(it1, it2)` - erase a range of elements of vector.
+- `v.erase(it1, it2)` - erase a range of elements of vector (*it1* is inclusive and *it2* is exclusive).
 ## `emplace()` vs `insert()`
 - Both are used to add elements in vector.
 - `emplace()` avoids unneccessary copy of object, thus it is efficient.

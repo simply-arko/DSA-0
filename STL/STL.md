@@ -24,9 +24,9 @@
     - `list` - Doubly ended List.
     - `forward list` - Single Linked-List.
 - In **`Assoicative Containers`** the elements are inserted in pre-defined order. *Eg*, as sorted ascending. Un-ordered associative containers are also available.
-    - `set` - BST
+    - `set` - RBT (Red-Black tree)
     - `map` - RBT (Red-Black tree)
-    - `multiset` - BST
+    - `multiset` - RBT (Red-Black tree)
     - `multimap` - RBT (Red-Black tree)
     - `unordered_set` - Hashtable
     - `unordered_map` - Hashtable
