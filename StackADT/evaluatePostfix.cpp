@@ -36,7 +36,7 @@ int evaluatePostfix(string exp){
             st.push(b/a);
         }
         else
-            st.push(ch-48);
+            st.push(ch-'a');
     }
     
     return st.top();
